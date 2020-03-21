@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Peer from "peerjs";
-import { useEffect } from "react";
+import UsersList from "../UsersList/UsersList";
 
 function App() {
   const [peers, setPeers] = useState([]);
   const [joined, setJoined] = useState(false);
-  const [id, setID] = useState("123");
-  const [peer, setPeer] = useState(null);
   const [conn, setConn] = useState(null);
 
-  const startConnection = event => {
-    event.preventDefault();
-    setPeer(new Peer(id));
-  };
+
 
   const saySomething = event => {
     event.preventDefault();
@@ -58,7 +53,7 @@ function App() {
     });
   }, [peer]);
 
-  const establishConnection = id => {
+  const establishConnection = (id, type) => {
     // connect
     const conn = peer.connect(id);
     setConn(conn);
@@ -84,19 +79,10 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={startConnection}>
-        <label>
-          <h1>Select your iD!</h1>
-          <input type="text" onChange={event => setID(event.target.value)} />
-        </label>
-        <input type="submit" value="Join chat" />
-      </form>
-      {joined &&
-        peers.map(({ id }) => (
-          <h2 key={id} onClick={() => establishConnection(id)}>
-            {id}
-          </h2>
-        ))}
+
+      {joined && (
+        <UsersList establishConnection={establishConnection} peers={peers} />
+      )}
       <form onSubmit={saySomething}>
         <label>
           <input type="text" />

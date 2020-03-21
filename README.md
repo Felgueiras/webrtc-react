@@ -1,3 +1,13 @@
+# Chat app
+
+This app uses the following technologies/tools:
+- React: create UI
+- react-redux: local state management with React bindings
+- styled components: CSS-in-JS styling for React
+- PeerJS: WebRTC wrapper
+- Storybook: visual style guide and manual
+- Netlify: deploy app
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
