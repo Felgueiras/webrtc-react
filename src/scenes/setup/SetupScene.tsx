@@ -39,7 +39,6 @@ const SetupScene: React.FunctionComponent<Props> = ({ id, setID }) => {
       )}
       <Setup
         connectToServer={(id: string) => {
-          debugger;
           connectToServer(id);
         }}
       />
